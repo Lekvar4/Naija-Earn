@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Sign Up — Naija Earn</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="40" fill="#fff"/><rect width="18" height="40" fill="#007A3D"/><rect x="42" width="18" height="40" fill="#007A3D"/></svg>
+      <div>
+        <div style="font-weight:800">Naija Earn</div>
+        <div style="font-size:12px; opacity:0.9">Sign up with a code</div>
+      </div>
+    </a>
+
+    <div>
+      <a class="sm" href="index.html">Login</a>
+      <a class="sm" href="admin.html">Admin</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card" style="max-width:560px; margin:auto;">
+      <h2>Create your account</h2>
+      <p class="small">You must enter a valid one-time signup code (sold externally).</p>
+
+      <form id="signupForm">
+        <label>Signup Code</label>
+        <input id="code" type="text" placeholder="Enter code (e.g. CODE12345)" required>
+
+        <label>Full Name</label>
+        <input id="fullname" type="text" placeholder="Your full name" required>
+
+        <label>Username</label>
+        <input id="username" type="text" placeholder="Choose a username" required>
+
+        <label>Password</label>
+        <input id="password" type="password" placeholder="Create a password" required>
+
+        <button class="btn" type="submit">Create Account</button>
+      </form>
+
+      <p id="signupMsg" class="small" style="margin-top:12px"></p>
+    </div>
+  </main>
+
+  <div id="liveAlert"></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+

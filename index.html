@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Naija Earn — Login</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="index.html">
+      <!-- Simple flag-logo SVG -->
+      <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <rect width="60" height="40" fill="#fff"/>
+        <rect width="18" height="40" fill="#007A3D"/>
+        <rect x="42" width="18" height="40" fill="#007A3D"/>
+      </svg>
+      <div>
+        <div style="font-weight:800; font-size:16px">Naija Earn</div>
+        <div style="font-size:12px; opacity:0.9">Earn. Withdraw. Repeat.</div>
+      </div>
+    </a>
+
+    <div>
+      <a class="sm" href="signup.html">Create Account</a>
+      <a class="sm" href="login.html">Login</a>
+      <a class="sm" href="admin.html">Admin</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h2>Welcome back 👋</h2>
+      <p class="lead">Login to your Naija Earn account to manage earnings and withdrawals.</p>
+
+      <form id="homeLoginForm">
+        <label for="homeUser">Username</label>
+        <input id="homeUser" type="text" placeholder="your username" required>
+        <label for="homePass">Password</label>
+        <input id="homePass" type="password" placeholder="password" required>
+        <button class="btn" type="submit">Login</button>
+      </form>
+
+      <p class="small" style="margin-top:12px">Don't have an account? <a href="signup.html">Create one</a> (you must have a signup code).</p>
+    </div>
+
+    <div class="card row">
+      <div class="col">
+        <h3>How it works</h3>
+        <p class="small">Buy a signup code — use it to register. Mine inside to earn. When you hit ₦5,000 you can request withdrawal. First withdrawal automatically applies a ₦1,000 fee (deducted on request).</p>
+      </div>
+
+      <div class="col">
+        <h3>Quick facts</h3>
+        <p><span class="balance">Min Withdraw: ₦5,000</span></p>
+        <p class="small">First withdrawal fee: ₦1,000 (automatically applied)</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="liveAlert" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
+

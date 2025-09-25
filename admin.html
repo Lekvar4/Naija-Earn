@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin — Naija Earn</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="40" fill="#fff"/><rect width="18" height="40" fill="#007A3D"/><rect x="42" width="18" height="40" fill="#007A3D"/></svg>
+      <div>
+        <div style="font-weight:800">Naija Earn</div>
+        <div style="font-size:12px; opacity:0.9">Admin panel</div>
+      </div>
+    </a>
+
+    <div>
+      <a class="sm" href="index.html">Home</a>
+      <a class="sm" href="signup.html">Sign Up</a>
+      <a class="sm" href="login.html">Login</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card" id="adminLoginCard">
+      <h2>Admin Login</h2>
+      <form id="adminLoginForm">
+        <label>Admin username</label>
+        <input id="adminUser" type="text" placeholder="admin" required>
+        <label>Admin password</label>
+        <input id="adminPass" type="password" placeholder="password" required>
+        <button class="btn" type="submit">Login</button>
+      </form>
+      <p id="adminMsg" class="small" style="margin-top:10px"></p>
+    </div>
+
+    <div class="card" id="adminPanel" style="display:none;">
+      <div class="row-between">
+        <h2>Admin Panel</h2>
+        <div>
+          <button class="btn secondary" id="adminLogoutBtn">Logout</button>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;">
+        <h3>Generate signup codes</h3>
+        <div style="display:flex; gap:10px; margin-bottom:10px;">
+          <input id="genCount" type="text" placeholder="Number of codes (e.g. 5)" style="width:140px; padding:10px; border-radius:8px; border:1px solid #eaf6ef;">
+          <button class="btn" id="genCodeBtn">Generate</button>
+        </div>
+
+        <div style="margin-top:8px;">
+          <h4>Active Codes</h4>
+          <div id="codesBox" class="small"></div>
+        </div>
+
+        <hr style="margin:18px 0; border:none; border-top:1px solid #eef7f0;">
+
+        <div style="margin-top:10px;">
+          <h3>Registered users</h3>
+          <div id="userBox" class="small"></div>
+        </div>
+
+        <hr style="margin:18px 0; border:none; border-top:1px solid #eef7f0;">
+
+        <div>
+          <h3>Withdrawal requests</h3>
+          <div id="withdrawBox" class="small"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="liveAlert"></div>
+  <script src="script.js"></script>
+</body>
+</html>

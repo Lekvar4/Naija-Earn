@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Withdraw - Naija Earn</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="withdraw.html">Withdraw</a>
+    <a href="admin.html">Admin</a>
+    <a href="index.html" id="logoutBtn">Logout</a>
+  </nav>
+
+  <div class="container">
+    <h2>Withdraw Funds</h2>
+    <p>✅ Minimum withdrawal: <b>₦5,000</b></p>
+    <p>⚠️ On your <b>first withdrawal</b>, you must pay a ₦1,000 processing fee.</p>
+    
+    <div class="fee-box">
+      <h3>Pay Withdrawal Fee</h3>
+      <p>Send <b>₦1,000</b> to:</p>
+      <p><b>Opay – 8138691157</b></p>
+      <small>Once payment is confirmed, your withdrawal will be processed to any Nigerian bank.</small>
+    </div>
+
+    <form id="withdrawForm">
+      <label>Bank Name</label>
+      <input type="text" id="bankName" required>
+
+      <label>Account Number</label>
+      <input type="text" id="accountNumber" required maxlength="10">
+
+      <label>Amount (₦)</label>
+      <input type="number" id="withdrawAmount" min="5000" required>
+
+      <button type="submit" class="success">Request Withdrawal</button>
+    </form>
+
+    <p id="withdrawMessage" style="margin-top:15px; color:green; font-weight:600;"></p>
+  </div>
+
+  <div id="liveAlert"></div>
+  <script src="script.js"></script>
+
+  <script>
+    // Simple Withdrawal Handler
+    const withdrawForm = document.getElementById("withdrawForm");
+    const withdrawMessage = document.getElementById("withdrawMessage");
+
+    if (withdrawForm) {
+      withdrawForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const bank = document.getElementById("bankName").value;
+        const acc = document.getElementById("accountNumber").value;
+        const amt = document.getElementById("withdrawAmount").value;
+
+        withdrawMessage.textContent = `✅ Withdrawal request of ₦${amt} to ${bank} (${acc}) submitted. Processing after ₦1,000 fee confirmation.`;
+      });
+    }
+  </script>
+</body>
+</html>

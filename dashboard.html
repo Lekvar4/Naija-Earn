@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard — Naija Earn</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="dashboard.html">
+      <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="40" fill="#fff"/><rect width="18" height="40" fill="#007A3D"/><rect x="42" width="18" height="40" fill="#007A3D"/></svg>
+      <div>
+        <div style="font-weight:800">Naija Earn</div>
+        <div style="font-size:12px; opacity:0.9">Your dashboard</div>
+      </div>
+    </a>
+
+    <div>
+      <a class="sm" href="index.html">Home</a>
+      <a class="sm" href="withdraw.html">Withdraw</a>
+      <a class="sm" href="admin.html">Admin</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card row">
+      <div class="col">
+        <h2 id="welcome">Hello, User</h2>
+        <p class="small" id="userFull"></p>
+
+        <p style="margin-top:10px">Balance: <span class="balance" id="balance">₦0</span></p>
+
+        <div style="margin-top:14px">
+          <button class="btn" id="mineBtn">Mine (Earn ₦200)</button>
+          <button class="btn secondary" id="autoMineBtn" style="margin-left:8px">Start Auto Mine</button>
+        </div>
+
+        <p class="small" style="margin-top:12px">Auto mine will add ₦100 every 6 seconds. Click again to stop.</p>
+      </div>
+
+      <div class="col">
+        <h3>Quick Actions</h3>
+
+        <div class="card" style="background:#f7fff8;">
+          <h4 style="margin-bottom:8px">Withdraw</h4>
+          <p class="small">Minimum withdraw: ₦5,000. First withdrawal fee: ₦1,000.</p>
+
+          <form id="withdrawForm">
+            <label>Choose Bank</label>
+            <select id="bank" required>
+              <option value="">Select bank</option>
+              <option>Zenith Bank</option>
+              <option>GTBank</option>
+              <option>Access Bank</option>
+              <option>UBA</option>
+              <option>First Bank</option>
+              <option>Guarantee Trust Bank</option>
+            </select>
+
+            <label>Account Number</label>
+            <input id="acct" type="text" placeholder="0123456789" required>
+
+            <button class="btn" type="submit">Request Withdrawal</button>
+          </form>
+
+          <p id="withdrawMsg" class="small" style="margin-top:8px"></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>My Activity</h3>
+      <div id="activityList" class="small">
+        <p>No activity yet.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row-between">
+        <h3>Account</h3>
+        <div>
+          <button class="btn secondary" id="accountLogout">Logout</button>
+        </div>
+      </div>
+
+      <table class="table">
+        <thead><tr><th>Field</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Username</td><td id="infoUsername"></td></tr>
+          <tr><td>Full name</td><td id="infoFullname"></td></tr>
+          <tr><td>First withdrawal paid</td><td id="infoFirstPaid"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div id="liveAlert"></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
