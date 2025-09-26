@@ -44,21 +44,6 @@
   <div id="liveAlert"></div>
   <script src="script.js"></script>
 
-  <script>
-    // Simple Withdrawal Handler
-    const withdrawForm = document.getElementById("withdrawForm");
-    const withdrawMessage = document.getElementById("withdrawMessage");
-
-    if (withdrawForm) {
-      withdrawForm.addEventListener("submit", function(e) {
-        e.preventDefault();
-        const bank = document.getElementById("bankName").value;
-        const acc = document.getElementById("accountNumber").value;
-        const amt = document.getElementById("withdrawAmount").value;
-
-        withdrawMessage.textContent = `✅ Withdrawal request of ₦${amt} to ${bank} (${acc}) submitted. Processing after ₦1,000 fee confirmation.`;
-      });
-    }
-  </script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
