@@ -22,7 +22,7 @@
       <h3>Pay Withdrawal Fee</h3>
       <p>Send <b>₦1,000</b> to:</p>
       <p><b>Opay – 8138691157</b></p>
-      <small>Once payment is confirmed, your withdrawal will be processed to any Nigerian bank.</small>
+      <small>Upload screenshot proof of payment when requesting withdrawal.</small>
     </div>
 
     <form id="withdrawForm">
@@ -35,15 +35,93 @@
       <label>Amount (₦)</label>
       <input type="number" id="withdrawAmount" min="5000" required>
 
+      <label>Upload Screenshot Proof</label>
+      <input type="file" id="proofFile" accept="image/*" required>
+
       <button type="submit" class="success">Request Withdrawal</button>
     </form>
 
-    <p id="withdrawMessage" style="margin-top:15px; color:green; font-weight:600;"></p>
+    <p id="withdrawMessage" style="margin-top:15px; font-weight:600;"></p>
   </div>
 
   <div id="liveAlert"></div>
-  <script src="script.js"></script>
 
-<script type="module" src="script.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"></script>
+
+  <script>
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBvWBJ45YSWoJwhRdxKSenrJ1pwcERLV4s",
+      authDomain: "naijaearn-6d914.firebaseapp.com",
+      projectId: "naijaearn-6d914",
+      storageBucket: "naijaearn-6d914.appspot.com",
+      messagingSenderId: "187057450801",
+      appId: "1:187057450801:web:e02de3eaacbd0673574a10",
+      measurementId: "G-Z0NDLB643E"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    // Handle withdrawal
+    const withdrawForm = document.getElementById("withdrawForm");
+    const withdrawMessage = document.getElementById("withdrawMessage");
+
+    withdrawForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const user = auth.currentUser;
+      if (!user) {
+        withdrawMessage.textContent = "⚠️ Please login first.";
+        withdrawMessage.style.color = "red";
+        return;
+      }
+
+      const bank = document.getElementById("bankName").value;
+      const acc = document.getElementById("accountNumber").value;
+      const amt = document.getElementById("withdrawAmount").value;
+      const file = document.getElementById("proofFile").files[0];
+
+      if (!file) {
+        withdrawMessage.textContent = "⚠️ Please upload screenshot proof.";
+        withdrawMessage.style.color = "red";
+        return;
+      }
+
+      withdrawMessage.textContent = "⏳ Uploading screenshot...";
+      withdrawMessage.style.color = "orange";
+
+      try {
+        // Upload proof to Firebase Storage
+        const proofRef = storage.ref().child(`proofs/${user.uid}_${Date.now()}.jpg`);
+        await proofRef.put(file);
+        const proofURL = await proofRef.getDownloadURL();
+
+        // Save withdrawal request in Firestore
+        await db.collection("withdrawals").add({
+          uid: user.uid,
+          bank: bank,
+          account: acc,
+          amount: amt,
+          proof: proofURL,
+          status: "pending",
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        withdrawMessage.textContent = `✅ Withdrawal request of ₦${amt} submitted. Pending admin approval.`;
+        withdrawMessage.style.color = "green";
+        withdrawForm.reset();
+      } catch (err) {
+        console.error(err);
+        withdrawMessage.textContent = "❌ Error: " + err.message;
+        withdrawMessage.style.color = "red";
+      }
+    });
+  </script>
 </body>
 </html>
