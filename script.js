@@ -713,3 +713,27 @@ logoutBtns.forEach(b => {
 
 // Wire password toggles on page load
 document.addEventListener("DOMContentLoaded", () => wirePasswordToggles());
+import { getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const withdrawBox = document.getElementById("withdrawBox");
+
+async function loadWithdrawals() {
+  const snapshot = await getDocs(collection(db, "withdrawals"));
+  withdrawBox.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    const w = doc.data();
+    withdrawBox.innerHTML += `
+      <div style="border:1px solid #ddd; padding:10px; margin-bottom:10px; border-radius:6px;">
+        <p><b>Bank:</b> ${w.bankName} (${w.accountNumber})</p>
+        <p><b>Amount:</b> ₦${w.amount}</p>
+        <p><b>Status:</b> ${w.status}</p>
+        <p><b>Proof:</b> <a href="${w.proof}" target="_blank">View Screenshot</a></p>
+      </div>
+    `;
+  });
+}
+
+if (withdrawBox) {
+  loadWithdrawals();
+}
